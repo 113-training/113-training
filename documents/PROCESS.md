@@ -139,7 +139,7 @@ Verify the following carefully:
 1. 可以直接幫忙取消訂單，也能在執行取消已取消訂單時，給到為什麼不能取消的原因
 
 練習 5
-1. 
+1. Prompt 和 Resouce 能方便一些重複性的指令，不需要內次都理解一些rules，或寫很長的Prompt
 ---
 
 ## 附錄：值得留下的對話片段
