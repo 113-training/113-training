@@ -117,6 +117,29 @@ Verify the following carefully:
 2. 我能說出這次重構「改善了什麼、沒有改變什麼」
 3. 我有在 code review 的角度看過 diff（不是 agent 說好就好）
 
+### 第二階段 — MCP Server
+
+練習 0
+1. 更快更方便的如果用agent 可以自己做，agent可以直接展示有問題的部分，人工的話需要自己一個一個對照
+
+練習 1
+1. 新增了GetOrder，LowStock，CustomerOrders
+2. GetOrder 用Id查詢訂單
+3. LowStock 查詢低於庫存門檻的商品
+4. CustomerOrders 用客戶Id查詢，該客戶的全部訂單
+
+練習 2
+1. 可以更清楚的知道是什麼錯誤，因為有清楚的錯誤信息
+
+練習 3
+1. 有MCP Agent可以更直接的用Tools查找，而不是跟著代碼邏輯一個一個去進行
+2. 可以更快完成指令
+
+練習 4
+1. 可以直接幫忙取消訂單，也能在執行取消已取消訂單時，給到為什麼不能取消的原因
+
+練習 5
+1. 
 ---
 
 ## 附錄：值得留下的對話片段
