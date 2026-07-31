@@ -13,25 +13,75 @@
 
 （開工前你把任務拆成哪幾步？實際做的時候順序有變嗎？為什麼變？）
 
--
+- 根據問題開工單
+- 排查問題原因
+- 修復問題
+- 開PR去master
 
 ### 2. AI 幫上大忙的地方
 
 （哪件事 agent 做得又快又好？**貼上當時的提問原文**，說明為什麼這樣問有效。）
 
--
+Investigate a bug in the OrderHub order listing flow.
+
+## Problem
+
+A newly created order is successfully saved in the database, but it does not appear anywhere in the Orders UI.
+
+I checked all available page indexes in the UI, but the newly created order ID is not included in any page.
+
+The database record exists, so investigate whether the issue is caused by the order listing logic, filtering, sorting, pagination, mapping, EF Core query, repository logic, or SQL.
+
+## Starting point
+
+Begin with:
+
+`training-repo/src/OrderHub.Web/Controllers/OrdersController.cs`
+
+Trace every method involved in loading and displaying the order list, including:
+* Controller actions
+* Services and service interfaces
+* Repository methods and repository interfaces
+* EF Core queries
+* ViewModels and DTO mappings
+* Razor views or frontend request parameters
+* Pagination calculations
+* Filtering and search conditions
+* Sorting logic
+* Any raw SQL, stored procedures, or database views used by the listing flow
+
+Also inspect the order creation flow where necessary to compare the saved data against the conditions used by the listing query.
+
+Verify the following carefully:
+1. Whether the newly created order has field values that cause it to be excluded by the listing query.
+2. Whether there are default filters for status, customer, date, deletion flag, active flag, or other fields.
+3. Whether nullable fields or default values are handled incorrectly.
+4. Whether the query uses an inner join that excludes the order because related data is missing.
+5. Whether the order creation transaction is committed successfully.
+6. Whether the listing query reads from the same database, table, schema, or environment as the creation flow.
+7. Whether sorting and pagination are applied in the correct order.
+8. Whether `Skip` and `Take` calculations are correct for the supplied `PageIndex`.
+9. Whether the total count query and data query use different filtering conditions.
+10. Whether the UI uses a zero-based page index while the backend expects a one-based page index, or vice versa.
+11. Whether an unstable or non-unique sort order causes records to be skipped between pages.
+12. Whether a mapping issue removes or overwrites the order ID.
+13. Whether cached data, `AsNoTracking`, query filters, or EF Core global query filters affect the result.
+14. Whether the listing query contains hardcoded conditions that do not match newly created orders.
+15. Whether raw SQL or a stored procedure has incorrect conditions, joins, ordering, or pagination logic.
+
+- 排查問題比人為排查快速，可以快速確認邏輯是不是有寫錯的。
 
 ### 3. AI 誤導我的地方，與我如何發現
 
 （agent 說錯／改錯／過度自信的時刻。你靠什麼抓到——對照程式碼？頁面實測？跑測試？）
 
--
+- 我會先查看排查結果和修復方案，問題原因準確且修復方案可行才執行，完成後查看修改的代碼確保沒有額外的調整，之後在頁面測試確保問題解決
 
 ### 4. 我會帶回日常工作的一招
 
 （一個具體、可複製的做法，不要寫「要多驗證」這種口號——寫出**操作步驟**。）
 
--
+- 列出具體排查方向，從哪個controller開始排查和列出排查那些比較可能的錯誤。需要可以縮小範圍，也更節省Token
 
 ## 自我驗證（做到哪個階段答哪題）
 
@@ -72,3 +122,8 @@
 ## 附錄：值得留下的對話片段
 
 （貼 1–2 段最有代表性的 prompt 與回應**摘要**——不用貼全文，重點是「我怎麼問」和「它怎麼答」。）
+- Investigate a bug in the OrderHub order listing flow.
+## Problem
+A newly created order is successfully saved in the database, but it does not appear anywhere in the Orders UI.
+I checked all available page indexes in the UI, but the newly created order ID is not included in any page.
+The database record exists, so investigate whether the issue is caused by the order listing logic, filtering, sorting, pagination, mapping, EF Core query, repository logic, or SQL.
