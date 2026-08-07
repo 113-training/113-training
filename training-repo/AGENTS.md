@@ -61,3 +61,4 @@ This is an internal-use system backed by a single SQL Server database. There is 
   * `*.pfx`
   * `appsettings.Production.json`
   * User Secrets
+  * `**/UserSecrets/**`
