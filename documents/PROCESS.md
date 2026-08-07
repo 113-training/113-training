@@ -140,7 +140,17 @@ Verify the following carefully:
 
 練習 5
 1. Prompt 和 Resouce 能方便一些重複性的指令，不需要內次都理解一些rules，或寫很長的Prompt
----
+
+### 第三階段 — Gemini 免費 API:把 AI 嵌進產品
+練習 1 
+1. 設置API 連接 AI，翻譯輸入內容為Prompt來給AI指令
+2. 設置只能執行Search，避免危險操作
+3. 設置Secret Key保護隱私和做防禦避免翻譯器被騙
+
+練習 2
+1. 把做好的後端，連接到網頁
+2. 能直接在網頁輸入對話，並回傳要的結果
+3. 如果報錯也能回傳明確的錯誤信息
 
 ## 附錄：值得留下的對話片段
 
