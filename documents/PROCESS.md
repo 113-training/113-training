@@ -152,6 +152,39 @@ Verify the following carefully:
 2. 能直接在網頁輸入對話，並回傳要的結果
 3. 如果報錯也能回傳明確的錯誤信息
 
+### 第四階段 — n8n 自動化:把人抽離流程
+練習 1 
+1. 得到這樣的回復
+headers       : @{user-agent=Mozilla/5.0 (Windows NT; Windows NT 10.0; zh-SG) WindowsPowerShell/5.1.17763.8880; content-type=application/json; host=localhost:5678; content-length=16; expect=100-continue; connection=Keep-Alive}
+params        :
+query         :
+body          : @{text=hello}
+webhookUrl    : http://localhost:5678/webhook-test/hello
+executionMode : test
+receivedAt    : 2026-09-12T01:53:37.252-04:00
+2. 需要用Test URL 完成一次Workflow才能得到Production URL
+
+練習 2
+1. 回答：查什麼、怎麼查」也交給 AI Agent 自由決定會導致
+- 沒有白名單防線->可能產生超出預期的查詢、查錯資料範圍，甚至碰到不該存取的資料
+- 可測試性-> 同一句需求每次可能生成不同查法，測試結果就不穩定
+- 日報數字的可信度 -> 可能出現漏單、重複計算、時間範圍錯誤
+
+練習 3
+1. 沒深挖
+2026-09-12 錄得 1 筆 Gold 等級會員取消訂單，總金額 2,916 元。
+總筆數：1 筆
+總金額：2,916 元
+值得注意的訂單：
+訂單編號 #204：會員「陳志明」（Gold 等級），取消金額 2,916 元。
+
+2. 深挖
+本日有一筆 Gold 會員取消之訂單，總金額為 2,916 元。
+總筆數：1
+總金額：2,916
+值得注意的訂單：
+訂單編號 204：由 Gold 會員「陳志明」取消。該訂單包含「星河 無線滑鼠」1 件，原始單價為 3,240 元，經會員 9 折折扣後，取消金額為 2,916 元。
+
 ## 附錄：值得留下的對話片段
 
 （貼 1–2 段最有代表性的 prompt 與回應**摘要**——不用貼全文，重點是「我怎麼問」和「它怎麼答」。）
