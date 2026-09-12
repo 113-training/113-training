@@ -17,6 +17,10 @@
     <ProjectReference Include="..\OrderHub.Core\OrderHub.Core.csproj" />
     <ProjectReference Include="..\OrderHub.Infrastructure\OrderHub.Infrastructure.csproj" />
   </ItemGroup>
+  
+	<ItemGroup>
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
